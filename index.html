@@ -1,403 +1,398 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="מוזס מדיקל סנטר — המרכז המקצועי לרפואת שיניים והשתלות. טיפולי שורש, אסתטיקה, כירורגיה וטיפול לילדים עם ניסיון של שנים." />
-  <meta name="theme-color" content="#0f0f0f" />
-
-  <title>מוזס מדיקל סנטר — רפואת שיניים והשתלות</title>
-
-  <!-- Fonts: Editorial + Refined + Boutique + International + Bold + Plex + Vintage -->
+  <title>מוזס מדיקל סנטר - רפואת שיניים מקצועית בעפולה</title>
+  <meta name="description" content="מוזס מדיקל סנטר - מרכז רפואת שיניים מקצועי עם ניסיון של 22 שנים. השתלות, אסתטיקה, וטיפול ילדים." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Suez+One&family=Assistant:wght@300;400;500;600;700;800&family=David+Libre:wght@400;500;700&family=Rubik:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Sans+Hebrew:wght@300;400;500;600;700&family=Karla:wght@300;400;500;600;700&family=Bellefair&family=Miriam+Libre:wght@400;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ==================== RESET & BASE ==================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      letter-spacing: var(--letter-spacing-body);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* ==================== THEME SYSTEM ==================== */
-    :root {
-      /* PALETTE: OBSIDIAN (Default) */
-      --primary-900: #0f0f0f;
-      --primary-800: #1a1a1a;
-      --primary-700: #2a2a2a;
-      --primary-600: #404040;
-      --accent-gold: #d4af37;
-      --accent-light: #f5f0e8;
-
-      /* Obsidian palette */
-      --color-primary: #d4af37;
-      --color-secondary: #a0826d;
-      --color-success: #4ade80;
-      --color-warning: #facc15;
-      --color-error: #ef4444;
-    }
-
-    /* DARK MODE (Default) */
-    html[data-theme="dark"] {
-      --bg-primary: #0f0f0f;
-      --bg-secondary: #1a1a1a;
-      --bg-tertiary: #2a2a2a;
-      --bg-overlay: rgba(15, 15, 15, 0.8);
-
-      --text-primary: #f5f0e8;
-      --text-secondary: #d0cac2;
-      --text-tertiary: #a8a39a;
-
-      --border-color: #404040;
-      --divider-color: #2a2a2a;
-
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
-      --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.7);
-    }
-
-    /* LIGHT MODE */
-    html[data-theme="light"] {
-      --bg-primary: #f9f7f3;
-      --bg-secondary: #ffffff;
-      --bg-tertiary: #f0ebe4;
-      --bg-overlay: rgba(255, 255, 255, 0.95);
-
-      --text-primary: #1a1a1a;
-      --text-secondary: #4a4a4a;
-      --text-tertiary: #7a7a7a;
-
-      --border-color: #e0dbd3;
-      --divider-color: #f0ebe4;
-
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.15);
-      --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.2);
-    }
-
-    /* PALETTE OVERRIDES */
-    html[data-palette="obsidian"] {
-      --color-primary: #d4af37;
-      --color-secondary: #a0826d;
-    }
-
-    html[data-palette="emerald"] {
-      --color-primary: #10b981;
-      --color-secondary: #059669;
-    }
-
-    html[data-palette="bordeaux"] {
-      --color-primary: #c94646;
-      --color-secondary: #7d2f2f;
-    }
-
-    html[data-palette="midnight"] {
-      --color-primary: #3b82f6;
-      --color-secondary: #1e40af;
-    }
-
-    html[data-palette="brand"] {
-      --color-primary: #14b8a6;
-      --color-secondary: #0d9488;
-    }
-
-    /* FONT PAIR OVERRIDES */
-    html[data-fonts="editorial"] {
-      --font-display: 'Frank Ruhl Libre', serif;
-      --font-body: 'Heebo', sans-serif;
-      --letter-spacing-body: -0.3px;
-      --letter-spacing-heading: 1px;
-    }
-
-    html[data-fonts="refined"] {
-      --font-display: 'David Libre', serif;
-      --font-body: 'Rubik', sans-serif;
-      --letter-spacing-body: 0px;
-      --letter-spacing-heading: 0.5px;
-    }
-
-    html[data-fonts="boutique"] {
-      --font-display: 'Cormorant Garamond', serif;
-      --font-body: 'Karla', sans-serif;
-      --letter-spacing-body: 0.2px;
-      --letter-spacing-heading: 1.5px;
-    }
-
-    html[data-fonts="international"] {
-      --font-display: 'Playfair Display', serif;
-      --font-body: 'Noto Sans Hebrew', sans-serif;
-      --letter-spacing-body: 0px;
-      --letter-spacing-heading: 0.8px;
-    }
-
-    html[data-fonts="bold"] {
-      --font-display: 'Suez One', serif;
-      --font-body: 'Assistant', sans-serif;
-      --letter-spacing-body: 0.3px;
-      --letter-spacing-heading: 2px;
-    }
-
-    html[data-fonts="plex"] {
-      --font-display: 'IBM Plex Serif', serif;
-      --font-body: 'Inter', sans-serif;
-      --letter-spacing-body: 0.4px;
-      --letter-spacing-heading: 0.5px;
-    }
-
-    html[data-fonts="miriam"] {
-      --font-display: 'Bellefair', serif;
-      --font-body: 'Miriam Libre', serif;
-      --letter-spacing-body: 0.5px;
-      --letter-spacing-heading: 1px;
-    }
-
-    /* BACKGROUND TEXTURES */
-    html[data-bg="vignette"]::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    html[data-bg="grain"]::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>');
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    html[data-bg="grid"]::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        linear-gradient(0deg, transparent 24%, rgba(212, 175, 55, 0.03) 25%, rgba(212, 175, 55, 0.03) 26%, transparent 27%, transparent 74%, rgba(212, 175, 55, 0.03) 75%, rgba(212, 175, 55, 0.03) 76%, transparent 77%, transparent),
-        linear-gradient(90deg, transparent 24%, rgba(212, 175, 55, 0.03) 25%, rgba(212, 175, 55, 0.03) 26%, transparent 27%, transparent 74%, rgba(212, 175, 55, 0.03) 75%, rgba(212, 175, 55, 0.03) 76%, transparent 77%, transparent);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    html[data-bg="arches"]::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* ==================== TYPOGRAPHY ==================== */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: var(--letter-spacing-heading);
-      color: var(--text-primary);
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      margin-bottom: 1.5rem;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 1.25rem;
-    }
-
-    h3 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      margin-bottom: 1rem;
-    }
-
-    p {
-      margin-bottom: 1rem;
-      color: var(--text-secondary);
-    }
-
-    a {
-      color: var(--color-primary);
-      text-decoration: none;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    a:hover {
-      color: var(--color-secondary);
-      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
-    }
-
-    /* ==================== COMPONENTS ==================== */
-    button {
-      font-family: var(--font-body);
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      padding: 0.875rem 1.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      background-color: var(--color-primary);
-      color: var(--primary-900);
-      box-shadow: var(--shadow-md);
-    }
-
-    button:hover {
-      background-color: var(--color-secondary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    button:active {
-      transform: translateY(0);
-    }
-
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* ==================== UTILITIES ==================== */
-    .container {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      .container {
-        padding: 0 1rem;
-      }
-    }
-
-    /* ==================== ANIMATIONS ==================== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.7;
-      }
-    }
-
-    [data-animate] {
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    [data-animate="slide"] {
-      animation: slideInRight 0.6s ease-out forwards;
-    }
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .gradient-text { background: linear-gradient(135deg, #0070f3 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .modal-hidden { display: none !important; }
+    .modal-show { display: flex !important; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    #contactModal { animation: fadeIn 0.3s ease-in; }
+    #contactModalContent { animation: slideUp 0.3s ease-out; }
   </style>
 </head>
-<body>
-  <div id="root" role="main"></div>
+<body class="bg-white text-slate-700">
 
-  <!-- React & Babel -->
-  <script
-    crossorigin
-    src="https://unpkg.com/react@18.3.1/umd/react.development.js"
-    integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
-  ></script>
-  <script
-    crossorigin
-    src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
-    integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
-  ></script>
-  <script
-    src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
-    integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
-  ></script>
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-white border-b border-slate-200/50 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <img src="/public/logo.png" alt="Moses Medical Center" class="h-10 w-auto" />
+      <div class="hidden sm:flex flex-col">
+        <span class="font-bold text-slate-900 text-sm">מוזס מדיקל</span>
+        <span class="text-xs text-slate-500">רפואת שיניים</span>
+      </div>
+    </a>
+    <div class="flex items-center gap-6">
+      <div class="hidden md:flex gap-6">
+        <a href="#services" class="text-sm text-slate-600 hover:text-blue-600 transition">שירותים</a>
+        <a href="#about" class="text-sm text-slate-600 hover:text-blue-600 transition">אודות</a>
+        <a href="#testimonials" class="text-sm text-slate-600 hover:text-blue-600 transition">חוות דעת</a>
+        <a href="#contact" class="text-sm text-slate-600 hover:text-blue-600 transition">צור קשר</a>
+      </div>
+      <button onclick="document.getElementById('contactModal').classList.add('modal-show')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-medium transition">
+        בקש תור
+      </button>
+    </div>
+  </div>
+</nav>
 
-  <!-- App Components (Load in order) -->
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="icons.jsx"></script>
-  <script type="text/babel" src="sections.jsx"></script>
-  <script type="text/babel" src="app.jsx"></script>
+<!-- Hero -->
+<section class="pt-20 pb-32 md:pt-32 md:pb-40 bg-gradient-to-b from-blue-50/80 to-white">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <div class="space-y-8">
+      <div class="inline-block">
+        <span class="text-blue-600 text-sm font-semibold tracking-wide">✨ מרכז דנטלי מוביל</span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold text-slate-900 leading-tight">
+        רוצה לשפר את מראה החיוך שלך בקלות ובמהירות?
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        כתרי זירקוניה ללא מתכת בשתי פגישות בלבד! טיפול מקצועי ע"י צוות רופאים מהשורה הראשונה בעזרת מכשור חדיש ומתקדם, עם יחס אישי ותשומת לב מירבית.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-6">
+        <button onclick="document.getElementById('contactModal').classList.add('modal-show')" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition flex items-center justify-center gap-2">
+          <iconify-icon icon="solar:calendar-linear" width="20"></iconify-icon>
+          בקש תור עכשיו
+        </button>
+        <a href="tel:0464640520" class="border border-slate-300 hover:border-blue-600 text-slate-900 px-8 py-4 rounded-lg font-semibold transition flex items-center justify-center gap-2">
+          <iconify-icon icon="solar:phone-calling-linear" width="20"></iconify-icon>
+          04-640-5020
+        </a>
+      </div>
+    </div>
+    <div class="relative h-96 md:h-full min-h-96">
+      <img src="/public/images/2660634_1735409493322_0.jpg" alt="Modern Dental Clinic" class="w-full h-full object-cover rounded-3xl shadow-2xl" />
+      <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-lg max-w-xs">
+        <div class="flex items-center gap-3">
+          <div class="bg-green-100 p-3 rounded-full">
+            <iconify-icon icon="solar:check-circle-bold" width="24" class="text-green-600"></iconify-icon>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-slate-900">ביטחון מובטח</p>
+            <p class="text-xs text-slate-500">ציוד חדישני וסטריליזציה מלאה</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-16 bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+    <div class="text-center">
+      <div class="text-5xl font-bold text-blue-400 mb-2">22+</div>
+      <p class="text-slate-300">שנות ניסיון</p>
+    </div>
+    <div class="text-center">
+      <div class="text-5xl font-bold text-blue-400 mb-2">12.4K</div>
+      <p class="text-slate-300">השתלות מוצלחות</p>
+    </div>
+    <div class="text-center">
+      <div class="text-5xl font-bold text-blue-400 mb-2">5+</div>
+      <p class="text-slate-300">רופאים מומחים</p>
+    </div>
+    <div class="text-center">
+      <div class="text-5xl font-bold text-blue-400 mb-2">24/7</div>
+      <p class="text-slate-300">שירות חירום</p>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-16 max-w-2xl">
+      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">שירותים מקצועיים</h2>
+      <p class="text-lg text-slate-600">כל טיפול שתצטרך עם צוות מומחים וציוד חדישני ביותר</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="group bg-slate-50 hover:bg-blue-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 transition duration-300">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6 group-hover:bg-blue-200 transition">
+          <iconify-icon icon="solar:tooth-bold" width="32" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2 text-lg">רפואת שיניים כללית</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">טיפול מונע, ניקוי, ובדיקות שיניים שוטפות לשמירה על בריאות הפה.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-blue-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 transition duration-300">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6 group-hover:bg-blue-200 transition">
+          <iconify-icon icon="solar:hammer-bold" width="32" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2 text-lg">השתלות שיניים</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">השתלות דנטליות מתקדמות עם שיעורי הצלחה גבוהים ביותר.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-blue-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 transition duration-300">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6 group-hover:bg-blue-200 transition">
+          <iconify-icon icon="solar:smile-bold" width="32" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2 text-lg">אסתטיקה שיניים</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">הלבנה מקצועית, כתרים וסתתות לחיוך מושלם.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-blue-50 p-8 rounded-2xl border border-slate-200 hover:border-blue-300 transition duration-300">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6 group-hover:bg-blue-200 transition">
+          <iconify-icon icon="solar:peach-bold" width="32" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2 text-lg">טיפול לילדים</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">טיפול חינוכי וידידותי לילדים עם גישה מקצועית.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <div class="relative h-96 md:h-full min-h-96">
+      <img src="/public/images/81686365_601431287299882_6909456572183740416_n.jpg" alt="Clinic" class="w-full h-full object-cover rounded-3xl shadow-xl" />
+    </div>
+    <div class="space-y-8">
+      <div>
+        <span class="text-blue-600 text-sm font-semibold tracking-wide">אודות הקליניקה</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-4">מרכז רפואת שיניים מובילה בעפולה</h2>
+      </div>
+      <p class="text-lg text-slate-600 leading-relaxed">
+        מוזס מדיקל סנטר הקימה במשך 22 שנים מיקום שיהיה הבחירה המובילה לטיפול שיניים מקצועי, חינוכי וחם בעפולה.
+      </p>
+      <ul class="space-y-4">
+        <li class="flex gap-4 items-start">
+          <span class="text-blue-600 font-bold text-xl pt-1">✓</span>
+          <div>
+            <p class="font-semibold text-slate-900">צוות רופאים מומחים</p>
+            <p class="text-slate-600 text-sm">בעלי ניסיון בכל תחומי רפואת השיניים</p>
+          </div>
+        </li>
+        <li class="flex gap-4 items-start">
+          <span class="text-blue-600 font-bold text-xl pt-1">✓</span>
+          <div>
+            <p class="font-semibold text-slate-900">ציוד טכנולוגי חדישני</p>
+            <p class="text-slate-600 text-sm">טיפול מדויק ובטוח עם הטכנולוגיה העדכנית ביותר</p>
+          </div>
+        </li>
+        <li class="flex gap-4 items-start">
+          <span class="text-blue-600 font-bold text-xl pt-1">✓</span>
+          <div>
+            <p class="font-semibold text-slate-900">סביבה נקייה ובטוחה</p>
+            <p class="text-slate-600 text-sm">סטריליזציה מלאה והנוהלי ביטחון עליונים</p>
+          </div>
+        </li>
+        <li class="flex gap-4 items-start">
+          <span class="text-blue-600 font-bold text-xl pt-1">✓</span>
+          <div>
+            <p class="font-semibold text-slate-900">שירות פרטי וחם</p>
+            <p class="text-slate-600 text-sm">טיפול אישי עם הקשבה לכל צרכי המטופל</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-16 max-w-2xl">
+      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">חוות דעת מטופלים</h2>
+      <p class="text-lg text-slate-600">אנחנו גאים בחוות הדעת החיוביות של מטופלינו</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+        <div class="flex gap-1 mb-4">
+          <span class="text-yellow-400">★★★★★</span>
+        </div>
+        <p class="text-slate-700 mb-6 leading-relaxed">"טיפול מקצועי וחם. הרופא הסביר לי כל שלב בצורה מובנת. חוויה נעימה במיוחד!"</p>
+        <p class="font-semibold text-slate-900">רחל כהן</p>
+        <p class="text-sm text-slate-500">מטופלת קבועה</p>
+      </div>
+      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+        <div class="flex gap-1 mb-4">
+          <span class="text-yellow-400">★★★★★</span>
+        </div>
+        <p class="text-slate-700 mb-6 leading-relaxed">"הסביבה נקייה, הצוות מקצועי ותמידי. התור היה במועד וללא המתנות מיותרות."</p>
+        <p class="font-semibold text-slate-900">דוד לוי</p>
+        <p class="text-sm text-slate-500">מטופל חדש</p>
+      </div>
+      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+        <div class="flex gap-1 mb-4">
+          <span class="text-yellow-400">★★★★★</span>
+        </div>
+        <p class="text-slate-700 mb-6 leading-relaxed">"השתלות שיניים בביצוע מושלם. התוצאה מעבר לציפיות שלי. מומלץ בחום!"</p>
+        <p class="font-semibold text-slate-900">מרים אברהם</p>
+        <p class="text-sm text-slate-500">שיקום מלא</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-16 max-w-2xl">
+      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">צור קשר</h2>
+      <p class="text-lg text-slate-600">בואו ניצור לך חיוך יפה</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6">
+          <iconify-icon icon="solar:map-point-linear" width="28" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2">כתובת</h3>
+        <p class="text-slate-600">היזמויות עפולה<br/>עפולה, 16100</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6">
+          <iconify-icon icon="solar:phone-calling-linear" width="28" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2">טלפון</h3>
+        <a href="tel:0464640520" class="text-blue-600 hover:text-blue-700 font-semibold">04-640-5020</a>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200">
+        <div class="bg-blue-100 p-4 rounded-xl w-fit mb-6">
+          <iconify-icon icon="solar:clock-circle-linear" width="28" class="text-blue-600"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2">שעות פתיחה</h3>
+        <p class="text-slate-600 text-sm">
+          ראשון-חמישי<br/>
+          <span class="font-semibold">09:00 - 17:00</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="/public/logo.png" alt="Moses" class="h-8 w-auto" />
+          <span class="font-bold text-white">מוזס מדיקל</span>
+        </div>
+        <p class="text-sm">מרכז רפואת שיניים מקצועי עם 22 שנות ניסיון.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-4">ניווט</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#services" class="hover:text-white transition">שירותים</a></li>
+          <li><a href="#about" class="hover:text-white transition">אודות</a></li>
+          <li><a href="#testimonials" class="hover:text-white transition">חוות דעת</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-4">יצירת קשר</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="tel:0464640520" class="hover:text-white transition">04-640-5020</a></li>
+          <li>היזמויות עפולה</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-4">עקוב אחרינו</h4>
+        <div class="flex gap-3 flex-wrap">
+          <a href="https://www.facebook.com/profile.php?id=100063661626419" target="_blank" title="Facebook" class="hover:text-white transition flex items-center gap-2">
+            <iconify-icon icon="brandico:facebook-rect" width="20"></iconify-icon>
+            <span class="text-sm">Facebook</span>
+          </a>
+          <a href="https://experts.easy.co.il/%D7%9E%D7%95%D7%96%D7%A1-%D7%9E%D7%93%D7%99%D7%A7%D7%9C-%D7%A1%D7%A0%D7%98%D7%A8/" target="_blank" title="Easy.co.il" class="hover:text-white transition flex items-center gap-2">
+            <iconify-icon icon="solar:briefcase-bold" width="20"></iconify-icon>
+            <span class="text-sm">Easy.co.il</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 pt-8 text-center text-sm">
+      <p>© 2026 מוזס מדיקל סנטר. כל הזכויות שמורות.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Button -->
+<button onclick="document.getElementById('contactModal').classList.add('modal-show')" class="fixed bottom-8 right-8 z-40 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-2xl hover:shadow-blue-600/40 transition flex items-center justify-center gap-2 group">
+  <iconify-icon icon="solar:chat-square-call-linear" width="24"></iconify-icon>
+  <span class="hidden md:inline text-sm font-semibold">בקש תור</span>
+</button>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="modal-hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 items-center justify-center p-4">
+  <div id="contactModalContent" class="bg-white rounded-3xl shadow-2xl max-w-md w-full">
+    <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6 flex items-center justify-between rounded-t-3xl">
+      <h2 class="text-2xl font-bold text-white">בקש תור</h2>
+      <button onclick="document.getElementById('contactModal').classList.remove('modal-show')" class="text-white/80 hover:text-white text-2xl">×</button>
+    </div>
+    <div class="p-8">
+      <form id="contactForm" class="space-y-5">
+        <div>
+          <label class="block text-sm font-semibold text-slate-900 mb-2">בחר שירות *</label>
+          <select name="service" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-700">
+            <option value="">בחר שירות...</option>
+            <option value="general">רפואת שיניים כללית</option>
+            <option value="implants">השתלות שיניים</option>
+            <option value="cosmetic">אסתטיקה שיניים</option>
+            <option value="children">טיפול לילדים</option>
+            <option value="emergency">חירום</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-900 mb-2">שם מלא *</label>
+          <input type="text" name="name" required placeholder="הכנס שם מלא" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-900 mb-2">טלפון *</label>
+          <input type="tel" name="phone" required placeholder="05X-XXXXXXX" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-900 mb-2">דוא״ל *</label>
+          <input type="email" name="email" required placeholder="example@email.com" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-900 mb-2">הודעה</label>
+          <textarea name="message" rows="3" placeholder="ספר לנו עוד..." class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2">
+          <iconify-icon icon="solar:send-linear" width="20"></iconify-icon>
+          שלח בקשה
+        </button>
+        <div id="successMsg" class="hidden bg-green-50 border-2 border-green-300 text-green-800 p-4 rounded-lg text-sm text-center font-semibold">
+          ✓ תודה! בקשתך התקבלה
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const successMsg = document.getElementById('successMsg');
+    successMsg.classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('contactModal').classList.remove('modal-show');
+      successMsg.classList.add('hidden');
+    }, 2500);
+  });
+
+  document.getElementById('contactModal').addEventListener('click', (e) => {
+    if (e.target.id === 'contactModal') {
+      document.getElementById('contactModal').classList.remove('modal-show');
+    }
+  });
+</script>
+
 </body>
 </html>
