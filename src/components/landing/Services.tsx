@@ -1,11 +1,42 @@
 import { useLocale } from '@/i18n/useLocale';
 import { useTheme } from '@/i18n/useThemeHook';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import {
+  ImplantIcon,
+  RootCanalIcon,
+  WhiteningIcon,
+  ToothIcon,
+  ClockIcon,
+  SmileIcon,
+  ChildrenIcon,
+  CleaningIcon,
+  EmergencyIcon,
+} from './icons/DentalIcons';
 
 export function Services() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const { theme } = useTheme();
   const containerRef = useScrollReveal();
+
+  const services = locale === 'he' ? [
+    { number: '01', title: 'השתלות שיניים', description: 'טכנולוגיה מתקדמת להשתלות קבועות וטבעיות', icon: ImplantIcon },
+    { number: '02', title: 'אסתטיקה דנטלית', description: 'שיפור מראה החיוך עם טיפולים אסתטיים מתקדמים', icon: WhiteningIcon },
+    { number: '03', title: 'טיפולי שורש', description: 'שמירה על השן בטיפול דחוף ויעיל', icon: RootCanalIcon },
+    { number: '04', title: 'הלבנת שיניים', description: 'שיניים לבנות וברוקות בטוח וקבוע', icon: WhiteningIcon },
+    { number: '05', title: 'טיפול דחוף', description: 'זמינות 24/7 בשעות חירום וכאבים חריפים', icon: EmergencyIcon },
+    { number: '06', title: 'טיפול לילדים', description: 'סביבה נוחה וצוות מיוחד לילדים', icon: ChildrenIcon },
+    { number: '07', title: 'עיצוב חיוך', description: 'ייעוץ מקצועי וממוקד לחיוך מושלם', icon: SmileIcon },
+    { number: '08', title: 'ניקוי ומניעה', description: 'בדיקה שנתית מלאה וניקוי מקצועי', icon: CleaningIcon },
+  ] : [
+    { number: '01', title: 'Dental Implants', description: 'Advanced technology for permanent and natural teeth', icon: ImplantIcon },
+    { number: '02', title: 'Cosmetic Dentistry', description: 'Enhance your smile with advanced cosmetic treatments', icon: WhiteningIcon },
+    { number: '03', title: 'Root Canals', description: 'Preserve your tooth with effective treatment', icon: RootCanalIcon },
+    { number: '04', title: 'Teeth Whitening', description: 'Safe and effective tooth whitening solutions', icon: WhiteningIcon },
+    { number: '05', title: 'Emergency Care', description: '24/7 availability for urgent dental issues', icon: EmergencyIcon },
+    { number: '06', title: 'Pediatric Care', description: 'Comfortable environment for children', icon: ChildrenIcon },
+    { number: '07', title: 'Smile Design', description: 'Professional consultation for your perfect smile', icon: SmileIcon },
+    { number: '08', title: 'Prevention & Cleaning', description: 'Annual checkups and professional cleaning', icon: CleaningIcon },
+  ];
 
   return (
     <section
@@ -32,7 +63,7 @@ export function Services() {
               color: 'var(--text-muted)',
             }}
           >
-            {t.services.label}
+            {locale === 'he' ? 'שירותים' : 'Services'}
           </div>
         </div>
 
@@ -48,32 +79,28 @@ export function Services() {
             marginBottom: '64px',
           }}
         >
-          {t.services.title}
+          {locale === 'he' ? 'שמונה תחומים, מכבית אחת, שמכיר אתכם' : 'Eight Specialties, One Clinic, That Knows You'}
         </h2>
 
         {/* Cards Grid */}
         <div
-          className="grid md:grid-cols-3 gap-8 mb-16"
+          className="grid md:grid-cols-4 gap-6 mb-16"
         >
-          {t.services.items.map((item: any, idx: number) => {
-            const cardRef = useScrollReveal();
+          {services.map((item: any, idx: number) => {
+            const IconComponent = item.icon;
             return (
               <div
                 key={idx}
-                ref={cardRef}
-                className="reveal group transition-all duration-300"
+                className="group transition-all duration-300"
                 style={{
                   backgroundColor: 'var(--surface)',
                   border: '1px solid var(--border)',
                   borderRadius: '7px',
                   padding: '24px',
                   cursor: 'pointer',
-                  transitionProperty: 'box-shadow, border-color',
+                  transitionProperty: 'box-shadow, border-color, transform',
                   transitionDuration: '0.15s',
                   transitionTimingFunction: 'cubic-bezier(0.5, 0.25, 0.35, 1)',
-                  animation: `scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${idx * 0.1}s forwards`,
-                  opacity: 0,
-                  transform: 'scale(0.95)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.15)';
@@ -84,6 +111,11 @@ export function Services() {
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
+                {/* Icon */}
+                <div style={{ marginBottom: '16px' }}>
+                  <IconComponent />
+                </div>
+
                 {/* Number */}
                 <div
                   style={{
@@ -93,7 +125,7 @@ export function Services() {
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
                     color: 'var(--text-muted)',
-                    marginBottom: '16px',
+                    marginBottom: '12px',
                   }}
                 >
                   {item.number}
@@ -102,7 +134,7 @@ export function Services() {
                 {/* Title */}
                 <h3
                   style={{
-                    fontSize: '18px',
+                    fontSize: '16px',
                     fontFamily: 'Georgia, serif',
                     fontWeight: 600,
                     color: 'var(--text-primary)',
@@ -117,76 +149,22 @@ export function Services() {
                 {/* Description */}
                 <p
                   style={{
-                    fontSize: '14px',
+                    fontSize: '13px',
                     fontFamily: 'Geist, sans-serif',
                     fontWeight: 400,
                     color: 'var(--text-muted)',
                     lineHeight: 1.5,
+                    marginBottom: '16px',
                   }}
                 >
                   {item.description}
                 </p>
+
+                {/* Booking Link */}
+                <a href="#booking" style={{ color: '#0070f3', textDecoration: 'none', fontSize: '12px', fontWeight: '600' }}>
+                  {locale === 'he' ? 'קביעת חור →' : 'Book →'}
+                </a>
               </div>
-            );
-          })}
-        </div>
-
-        {/* Technology Badges */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '32px' }}>
-          {t.hero.capabilities.map((capability) => {
-            const isDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const effectiveTheme = theme === 'dark' || (theme === 'auto' && isDarkScheme) ? 'dark' : 'light';
-            const isDarkMode = effectiveTheme === 'dark';
-
-            const lightModeColors: { [key: string]: { bg: string; text: string } } = {
-              'AI': { bg: '#E6F2FF', text: '#0070f3' },
-              'Custom JS': { bg: '#FFFAED', text: '#d97706' },
-              'APIs': { bg: '#EFF6FF', text: '#2563eb' },
-              'Databases': { bg: '#F0FDF4', text: '#16a34a' },
-              'n8n': { bg: '#FAF5FF', text: '#7c3aed' },
-              'Make': { bg: '#FFF7ED', text: '#ea580c' },
-              'JavaScript': { bg: '#FFFAED', text: '#d97706' },
-              'SaaS': { bg: '#F3F4F6', text: '#6B7280' },
-              'מסדי נתונים': { bg: '#F0FDF4', text: '#16a34a' },
-            };
-
-            const darkModeColors: { [key: string]: { bg: string; text: string } } = {
-              'AI': { bg: '#222222', text: '#0070f3' },
-              'Custom JS': { bg: '#222222', text: '#d97706' },
-              'APIs': { bg: '#222222', text: '#2563eb' },
-              'Databases': { bg: '#222222', text: '#16a34a' },
-              'n8n': { bg: '#222222', text: '#7c3aed' },
-              'Make': { bg: '#222222', text: '#ea580c' },
-              'JavaScript': { bg: '#222222', text: '#d97706' },
-              'SaaS': { bg: '#222222', text: '#6B7280' },
-              'מסדי נתונים': { bg: '#222222', text: '#16a34a' },
-            };
-
-            const colors = isDarkMode ? darkModeColors : lightModeColors;
-            const capText = String(capability).trim();
-            const colorObj = colors[capText];
-            const bgColor = colorObj?.bg || '#0070f3';
-            const textColor = colorObj?.text || '#ffffff';
-
-            return (
-              <span
-                key={capText}
-                style={{
-                  backgroundColor: bgColor,
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '4px 10px',
-                  fontSize: '12px',
-                  fontFamily: 'Geist, sans-serif',
-                  color: textColor,
-                  whiteSpace: 'nowrap',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s cubic-bezier(0.5, 0.25, 0.35, 1)',
-                }}
-              >
-                {capability}
-              </span>
             );
           })}
         </div>
