@@ -1,43 +1,23 @@
 import { useLocale } from '@/i18n/useLocale';
-import { useEffect, useRef, useState } from 'react';
 
 export function Features() {
-  const { t, locale } = useLocale();
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+  const { locale } = useLocale();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = cardsRef.current.indexOf(entry.target as HTMLDivElement);
-            if (index !== -1) {
-              setTimeout(() => {
-                setVisibleCards((prev) => {
-                  const newVisible = [...prev];
-                  newVisible[index] = true;
-                  return newVisible;
-                });
-              }, index * 100);
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => {
-      cardsRef.current.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
-    };
-  }, []);
+  const features = locale === 'he' ? [
+    { icon: '✓', title: '22+ שנות ניסיון', description: 'ניסיון של 22 שנים בטיפולים דנטליים מקצועיים' },
+    { icon: '✓', title: '+12,400 שתלות מוצלחות', description: 'אלפי חולים מרוצים עם תוצאות מושלמות' },
+    { icon: '✓', title: 'זמינות מלאה לחירום', description: '24/7 זמינות לטיפול בשעות חירום' },
+    { icon: '✓', title: 'צוות מיומן', description: 'רופאי שיניים בעלי הסמכות וניסיון רב' },
+    { icon: '✓', title: 'טכנולוגיה מתקדמת', description: 'ציוד מודרני וטכנולוגיות היום' },
+    { icon: '✓', title: 'שיעור הצלחה 97%', description: 'שיעור הצלחה גבוה בכל הטיפולים' },
+  ] : [
+    { icon: '✓', title: '22+ Years Experience', description: '22 years of professional dental care' },
+    { icon: '✓', title: '+12,400 Successful Implants', description: 'Thousands of satisfied patients' },
+    { icon: '✓', title: '24/7 Emergency Care', description: 'Always available in urgent situations' },
+    { icon: '✓', title: 'Expert Team', description: 'Certified and experienced dentists' },
+    { icon: '✓', title: 'Modern Technology', description: 'Latest equipment and techniques' },
+    { icon: '✓', title: '97% Success Rate', description: 'High success rate across all treatments' },
+  ];
 
   return (
     <section
@@ -60,87 +40,61 @@ export function Features() {
             textAlign: locale === 'en' ? 'left' : 'right',
           }}
         >
-          {t.features.title}
+          {locale === 'he' ? 'למה לבחור במוזס?' : 'Why Choose Moses?'}
         </h2>
 
         {/* Features Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '48px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '32px',
           }}
         >
-          {t.features.items.map((feature: any, idx: number) => (
+          {features.map((feature, idx) => (
             <div
               key={idx}
-              ref={(el) => {
-                if (el) cardsRef.current[idx] = el;
-              }}
-              className={`feature-card ${!visibleCards[idx] ? 'invisible' : ''}`}
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '24px',
-                opacity: visibleCards[idx] ? 1 : 0,
-                transform: visibleCards[idx] ? 'translateY(0) scale(1)' : 'translateY(24px) scale(0.95)',
-                transition: 'opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                padding: '24px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                backgroundColor: 'var(--surface)',
+                textAlign: locale === 'en' ? 'left' : 'right',
+                transition: 'all 0.15s cubic-bezier(0.5, 0.25, 0.35, 1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              {/* Image */}
-              <div
+              <div style={{ fontSize: '24px', marginBottom: '12px', color: '#25d366' }}>
+                {feature.icon}
+              </div>
+              <h3
                 style={{
-                  borderRadius: '7px',
-                  overflow: 'hidden',
-                  border: '1px solid var(--border)',
-                  transition: 'all 0.15s cubic-bezier(0.5, 0.25, 0.35, 1)',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.15)';
-                  e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  fontSize: '18px',
+                  fontFamily: 'Georgia, serif',
+                  fontWeight: '600',
+                  color: 'var(--text-primary)',
+                  marginBottom: '8px',
                 }}
               >
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block',
-                    transition: 'opacity 0.15s cubic-bezier(0.5, 0.25, 0.35, 1)',
-                  }}
-                />
-              </div>
-
-              {/* Content */}
-              <div style={{ textAlign: locale === 'en' ? 'left' : 'right' }}>
-                <h3
-                  style={{
-                    fontSize: '24px',
-                    fontFamily: 'Georgia, serif',
-                    fontWeight: 700,
-                    color: 'var(--text-primary)',
-                    marginBottom: '12px',
-                  }}
-                >
-                  {feature.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: '14px',
-                    fontFamily: 'Geist, sans-serif',
-                    color: 'var(--text-muted)',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {feature.description}
-                </p>
-              </div>
+                {feature.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '13px',
+                  fontFamily: 'Geist, sans-serif',
+                  color: 'var(--text-muted)',
+                  lineHeight: 1.5,
+                }}
+              >
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
