@@ -1,11 +1,39 @@
-.vercel
-node_modules
-dist
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment
 .env
 .env.local
-src/**/*.js
-src/**/*.d.ts
-src/**/*.d.ts.map
-src/**/*.js.map
-.claude/worktrees/
+.env.*.local
+
+# Node/Package managers
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Build/Temp
+dist/
+build/
+.next/
+out/
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
+logs/
+
+# Misc
 .DS_Store
+*.pem
