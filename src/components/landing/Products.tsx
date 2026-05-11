@@ -1,301 +1,289 @@
 import { useLocale } from '@/i18n/useLocale';
-import { useEffect, useRef, useState } from 'react';
-
-declare global {
-  interface Window {
-    gtag?: (event: string, eventName: string, eventParams?: Record<string, any>) => void;
-  }
-}
+import { useState } from 'react';
 
 export function Products() {
-  const { t, locale } = useLocale();
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+  const { locale } = useLocale();
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: '',
+    date: '',
+    time: '',
+    message: '',
+  });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = cardsRef.current.indexOf(entry.target as HTMLDivElement);
-            if (index !== -1) {
-              setTimeout(() => {
-                setVisibleCards((prev) => {
-                  const newVisible = [...prev];
-                  newVisible[index] = true;
-                  return newVisible;
-                });
-              }, index * 100);
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  const services = locale === 'he' ? [
+    'בחר שירות',
+    'השתלות שיניים',
+    'אסתטיקה דנטלית',
+    'טיפולי שורש',
+    'הלבנת שיניים',
+    'טיפול דחוף',
+    'טיפול לילדים',
+    'עיצוב חיוך',
+    'ניקוי ומניעה',
+  ] : [
+    'Select a service',
+    'Dental Implants',
+    'Cosmetic Dentistry',
+    'Root Canals',
+    'Teeth Whitening',
+    'Emergency Care',
+    'Pediatric Care',
+    'Smile Design',
+    'Prevention & Cleaning',
+  ];
 
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = `שלום, אני רוצה לקבוע ביקור:
+שם: ${formData.name}
+טלפון: ${formData.phone}
+אימייל: ${formData.email}
+שירות: ${formData.service}
+תאריך: ${formData.date}
+שעה: ${formData.time}
+הערה: ${formData.message}`;
+
+    const whatsappUrl = `https://wa.me/972464050020?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
-
-    return () => {
-      cardsRef.current.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
-    };
-  }, []);
-
-  const handleCTAClick = () => {
-    // Track GTM event
-    if (window.gtag) {
-      window.gtag('event', 'products_cta_click', {
-        event_category: 'engagement',
-        event_label: t.products.cta,
-      });
-    }
-
-    // Scroll to project brief form
-    const element = document.getElementById('project-brief');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      // Focus on name input after scroll
-      setTimeout(() => {
-        const nameInput = element.querySelector('input[name="name"]') as HTMLInputElement;
-        if (nameInput) {
-          nameInput.focus();
-        }
-      }, 500);
-    }
   };
 
   return (
     <section
+      id="booking"
       style={{
         padding: '96px 24px',
+        backgroundColor: 'var(--surface)',
         borderTop: '1px solid var(--border)',
       }}
     >
-      <style>{`
-        @keyframes cardEnter {
-          from {
-            opacity: 0;
-            transform: translateY(24px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
-        .product-card {
-          animation: cardEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        .product-card.invisible {
-          opacity: 0;
-          transform: translateY(24px) scale(0.95);
-        }
-      `}</style>
-      <div className="max-w-content mx-auto">
-        {/* Header */}
-        <div style={{ marginBottom: '64px' }}>
-          <h2
-            style={{
-              fontSize: '72px',
-              fontFamily: 'Georgia, serif',
-              fontWeight: 700,
-              lineHeight: 1.2,
-              color: 'var(--text-primary)',
-              marginBottom: '24px',
-              textAlign: locale === 'en' ? 'left' : 'right',
-            }}
-          >
-            {t.products.title}
-          </h2>
-          <p
-            style={{
-              fontSize: '18px',
-              fontFamily: 'Geist, sans-serif',
-              color: 'var(--text-muted)',
-              lineHeight: 1.6,
-              maxWidth: '600px',
-              textAlign: locale === 'en' ? 'left' : 'right',
-            }}
-          >
-            {t.products.subtitle}
-          </p>
-        </div>
-
-        {/* Product Grid */}
-        <div
+      <div className="max-w-content mx-auto" style={{ maxWidth: '600px' }}>
+        <h2
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px',
-            marginBottom: '64px',
+            fontSize: '48px',
+            fontFamily: 'Georgia, serif',
+            fontWeight: '700',
+            marginBottom: '12px',
+            textAlign: locale === 'he' ? 'right' : 'left',
           }}
         >
-          {t.products.items.map((product: any, index: number) => (
-            <div
-              key={product.name}
-              ref={(el) => {
-                if (el) cardsRef.current[index] = el;
-              }}
-              className={`product-card ${!visibleCards[index] ? 'invisible' : ''}`}
+          {locale === 'he' ? 'קביעת תור' : 'Book an Appointment'}
+        </h2>
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--text-muted)',
+            marginBottom: '48px',
+            textAlign: locale === 'he' ? 'right' : 'left',
+          }}
+        >
+          {locale === 'he'
+            ? 'מלא את הטופס למטה ואנחנו ניצור איתך קשר בקרוב'
+            : 'Fill out the form below and we\'ll contact you soon'}
+        </p>
+
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'שם מלא' : 'Full Name'}
+            </label>
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
               style={{
-                padding: '32px 24px',
+                width: '100%',
+                padding: '12px 16px',
                 border: '1px solid var(--border)',
                 borderRadius: '7px',
+                fontSize: '14px',
                 backgroundColor: 'var(--background)',
-                transition: 'all 0.15s cubic-bezier(0.5, 0.25, 0.35, 1)',
-                cursor: 'default',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-                textAlign: locale === 'en' ? 'left' : 'right',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
+                transition: 'border-color 0.15s',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.15)';
-                e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+              onFocus={(e) => (e.currentTarget.style.borderColor = '#0070f3')}
+              onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
+              placeholder={locale === 'he' ? 'יוחנן כהן' : 'John Smith'}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'טלפון' : 'Phone'}
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              required
+              value={formData.phone}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                fontSize: '14px',
+                backgroundColor: 'var(--background)',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
+                transition: 'border-color 0.15s',
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              onFocus={(e) => (e.currentTarget.style.borderColor = '#0070f3')}
+              onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
+              placeholder="050-1234567"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'אימייל' : 'Email'}
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                fontSize: '14px',
+                backgroundColor: 'var(--background)',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
+                transition: 'border-color 0.15s',
+              }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = '#0070f3')}
+              onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
+              placeholder="john@example.com"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'שירות' : 'Service'}
+            </label>
+            <select
+              name="service"
+              required
+              value={formData.service}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                fontSize: '14px',
+                backgroundColor: 'var(--background)',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
               }}
             >
-              {/* Icon */}
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                role="img"
-                aria-label={product.name}
-              >
-                {/* Meal Plans - Plate icon */}
-                {(product.name.includes('Meal') || product.name.includes('ארוחות')) && (
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <g>
-                      <circle cx="24" cy="24" r="14" stroke="var(--text-primary)" strokeWidth="2"/>
-                      <path d="M24 10v28M10 24h28" stroke="var(--text-primary)" strokeWidth="2" strokeLinecap="round"/>
-                      <circle cx="24" cy="17" r="2" fill="var(--text-primary)"/>
-                      <circle cx="31" cy="24" r="2" fill="var(--text-primary)"/>
-                      <circle cx="24" cy="31" r="2" fill="var(--text-primary)"/>
-                    </g>
-                  </svg>
-                )}
-                {/* Lead Manager - Funnel icon */}
-                {(product.name.includes('Lead') || product.name.includes('לידים')) && (
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <g>
-                      <path d="M8 10h32v8L24 32l-16-14v-8Z" stroke="var(--text-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M20 32v10M28 32v10" stroke="var(--text-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </g>
-                  </svg>
-                )}
-                {/* Salon - Calendar/Schedule icon */}
-                {(product.name.includes('Salon') || product.name.includes('סלונים')) && (
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <g>
-                      <rect x="10" y="12" width="28" height="28" rx="2" stroke="var(--text-primary)" strokeWidth="2"/>
-                      <path d="M14 12v-4M34 12v-4M10 20h28" stroke="var(--text-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="16" cy="28" r="1.5" fill="var(--text-primary)"/>
-                      <circle cx="24" cy="28" r="1.5" fill="var(--text-primary)"/>
-                      <circle cx="32" cy="28" r="1.5" fill="var(--text-primary)"/>
-                      <circle cx="16" cy="36" r="1.5" fill="var(--text-primary)"/>
-                      <circle cx="24" cy="36" r="1.5" fill="var(--text-primary)"/>
-                      <circle cx="32" cy="36" r="1.5" fill="var(--text-primary)"/>
-                    </g>
-                  </svg>
-                )}
-                {/* Clinic - Stethoscope icon */}
-                {(product.name.includes('Clinic') || product.name.includes('קליניקה')) && (
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <g>
-                      <path d="M14 16c-4.4 0-8 3.6-8 8s3.6 8 8 8M34 16c4.4 0 8 3.6 8 8s-3.6 8-8 8M14 24h20M14 24c0 5.5 4.5 10 10 10s10-4.5 10-10" stroke="var(--text-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M24 8v8" stroke="var(--text-primary)" strokeWidth="2" strokeLinecap="round"/>
-                    </g>
-                  </svg>
-                )}
-              </div>
+              {services.map((service, idx) => (
+                <option key={idx} value={service}>
+                  {service}
+                </option>
+              ))}
+            </select>
+          </div>
 
-              {/* Product Name */}
-              <h3
-                style={{
-                  fontSize: '18px',
-                  fontFamily: 'Georgia, serif',
-                  fontWeight: 700,
-                  color: 'var(--text-primary)',
-                  lineHeight: 1.2,
-                }}
-              >
-                {product.name}
-              </h3>
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'תאריך' : 'Preferred Date'}
+            </label>
+            <input
+              type="date"
+              name="date"
+              required
+              value={formData.date}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                fontSize: '14px',
+                backgroundColor: 'var(--background)',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
+              }}
+            />
+          </div>
 
-              {/* Industry Label */}
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontFamily: 'Geist, sans-serif',
-                  color: 'var(--text-muted)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  fontWeight: 500,
-                }}
-              >
-                {product.industry}
-              </p>
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'שעה' : 'Preferred Time'}
+            </label>
+            <input
+              type="time"
+              name="time"
+              required
+              value={formData.time}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                fontSize: '14px',
+                backgroundColor: 'var(--background)',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
+              }}
+            />
+          </div>
 
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: '14px',
-                  fontFamily: 'Geist, sans-serif',
-                  color: 'var(--text-muted)',
-                  lineHeight: 1.6,
-                }}
-              >
-                {product.description}
-              </p>
-            </div>
-          ))}
-        </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {locale === 'he' ? 'הערות' : 'Additional Notes'}
+            </label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid var(--border)',
+                borderRadius: '7px',
+                fontSize: '14px',
+                backgroundColor: 'var(--background)',
+                color: 'var(--text-primary)',
+                boxSizing: 'border-box',
+                minHeight: '100px',
+                fontFamily: 'Geist, sans-serif',
+              }}
+              placeholder={locale === 'he' ? 'כתוב כל דבר נוסף...' : 'Write anything additional...'}
+            />
+          </div>
 
-        {/* CTA Section */}
-        <div
-          style={{
-            textAlign: 'center',
-            direction: locale === 'en' ? 'ltr' : 'rtl',
-          }}
-        >
-          <p
-            style={{
-              fontSize: '18px',
-              fontFamily: 'Geist, sans-serif',
-              color: 'var(--text-primary)',
-              marginBottom: '24px',
-              fontWeight: 500,
-            }}
-          >
-            {t.products.pattern}
-          </p>
           <button
-            onClick={handleCTAClick}
-            aria-label={`${t.products.cta} - scroll to project brief form`}
+            type="submit"
             style={{
-              padding: '12px 32px',
-              fontSize: '16px',
-              fontFamily: 'Geist, sans-serif',
-              fontWeight: 600,
-              color: 'var(--button-text, white)',
-              backgroundColor: 'var(--button-bg, #000)',
+              padding: '14px 28px',
+              backgroundColor: '#25d366',
+              color: 'white',
               border: 'none',
-              borderRadius: '4px',
+              borderRadius: '7px',
+              fontSize: '16px',
+              fontWeight: '600',
               cursor: 'pointer',
               transition: 'all 0.15s cubic-bezier(0.5, 0.25, 0.35, 1)',
+              marginTop: '12px',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '0.9';
@@ -306,19 +294,15 @@ export function Products() {
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
-            {t.products.cta}
+            {locale === 'he' ? 'שלח בWhatsApp' : 'Send via WhatsApp'}
           </button>
-          <p
-            style={{
-              fontSize: '12px',
-              fontFamily: 'Geist, sans-serif',
-              color: 'var(--text-muted)',
-              marginTop: '16px',
-            }}
-          >
-            {t.products.secondary}
-          </p>
-        </div>
+        </form>
+
+        <p style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', marginTop: '24px' }}>
+          {locale === 'he'
+            ? 'נוכל לאשר את התור שלך דרך WhatsApp'
+            : 'We will confirm your appointment via WhatsApp'}
+        </p>
       </div>
     </section>
   );

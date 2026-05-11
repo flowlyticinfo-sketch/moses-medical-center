@@ -60,20 +60,7 @@ export function Nav() {
             e.currentTarget.style.opacity = '1';
           }}
         >
-          <div style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            backgroundColor: '#0070f3',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: '16px',
-          }}>
-            M
-          </div>
+          <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
           <span className="text-sm font-bold" style={{ color: 'var(--text-primary)', letterSpacing: '0', textAlign: locale === 'he' ? 'right' : 'left' }}>
             {locale === 'he' ? 'מוזס מדיקל סנטר' : 'Moses Medical Center'}
           </span>
