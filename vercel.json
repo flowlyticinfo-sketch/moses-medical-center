@@ -1,15 +1,5 @@
 {
-  "name": "Moses Medical Center",
-  "description": "High-conversion dental clinic landing page",
   "version": 2,
   "public": true,
-  "buildCommand": "echo 'Static site, no build needed'",
-  "env": [],
-  "regions": ["iad1"],
-  "functions": {
-    "api/**/*.js": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  }
+  "regions": ["iad1"]
 }
