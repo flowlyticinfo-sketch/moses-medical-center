@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+:root[data-theme="dark"],
+:root {
+  --background: #171717;
+  --surface: #000000;
+  --text-primary: #eaeaea;
+  --text-muted: #686868;
+  --accent: #0070f3;
+  --border: #383838;
+  --grid-line-color: rgba(255, 255, 255, 0.06);
+  --transition-duration: 0.15s;
+  --ease: cubic-bezier(0.5, 0.25, 0.35, 1);
+}
+
+:root[data-theme="light"] {
+  --background: #ffffff;
+  --surface: #f5f5f5;
+  --text-primary: #171717;
+  --text-muted: #818181;
+  --accent: #0070f3;
+  --border: #e0e0e0;
+  --grid-line-color: rgba(0, 0, 0, 0.06);
+  --transition-duration: 0.15s;
+  --ease: cubic-bezier(0.5, 0.25, 0.35, 1);
+}
+
+/* Animations - nextjs.org library */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes soft-fade-in {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes gradient-shine {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes width-expand {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes height-expand {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 1;
+    background-position: 200% center;
+  }
+  100% {
+    opacity: 0.3;
+    background-position: -200% center;
+  }
+}
+
+@keyframes modal-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(4%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes borderRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes revealSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  [dir="rtl"] {
+    font-family: Heebo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  .text-start {
+    @apply text-left;
+  }
+
+  [dir="rtl"] .text-start {
+    @apply text-right;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity var(--transition-duration) var(--ease),
+                transform var(--transition-duration) var(--ease);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover border animation for all cards */
+  .contact-card::after,
+  .product-card::after,
+  .reveal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 7px;
+    padding: 1px;
+    background: conic-gradient(from 0deg, var(--accent) 0%, var(--accent) 25%, transparent 50%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .contact-card:hover::after,
+  .product-card:hover::after,
+  .reveal:hover::after {
+    animation: borderRotate 1.5s linear infinite;
+    opacity: 1;
+  }
+
+  .contact-card,
+  .product-card,
+  .reveal {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grid-bg {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        var(--grid-line-color),
+        var(--grid-line-color) 1px,
+        transparent 1px,
+        transparent 32px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        var(--grid-line-color),
+        var(--grid-line-color) 1px,
+        transparent 1px,
+        transparent 32px
+      );
+    background-size: 100% 100%;
+    background-position: 0 0;
+  }
+
+  .focus-ring {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0070f3;
+  }
+}
+
+/* Select and Input styling for light/dark mode */
+select,
+input,
+textarea {
+  background-color: var(--background) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+:root[data-theme="light"] select {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] select {
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Flowlytic</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        :root[data-theme="dark"],
+        :root {
+            --background: #171717;
+            --surface: #000000;
+            --text-primary: #eaeaea;
+            --text-muted: #686868;
+            --accent: #0070f3;
+            --border: #383838;
+            --ease: cubic-bezier(0.5, 0.25, 0.35, 1);
+        }
+
+        :root[data-theme="light"] {
+            --background: #ffffff;
+            --surface: #ffffff;
+            --text-primary: #171717;
+            --text-muted: #999999;
+            --accent: #0070f3;
+            --border: #e0e0e0;
+            --ease: cubic-bezier(0.5, 0.25, 0.35, 1);
+        }
+
+        body {
+            font-family: Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background);
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 96px 24px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+        }
+        .content {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin: 0 0 24px 0;
+        }
+        h2 {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 48px;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin: 0 0 16px 0;
+        }
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        ul {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin: 0 0 16px 24px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.15s var(--ease);
+        }
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 48px 0;
+        }
+    </style>
+    <script>
+        function updateThemeButtons() {
+            const theme = localStorage.getItem('theme') || 'auto';
+            ['nav-theme-light', 'nav-theme-dark', 'nav-theme-auto', 'footer-theme-light', 'footer-theme-dark', 'footer-theme-auto'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    const btnTheme = id.split('-')[2];
+                    if (btnTheme === theme) {
+                        btn.style.background = 'var(--surface)';
+                        btn.style.border = '1px solid var(--border)';
+                        btn.style.color = 'var(--text-primary)';
+                    } else {
+                        btn.style.background = 'transparent';
+                        btn.style.border = 'none';
+                        btn.style.color = 'var(--text-muted)';
+                    }
+                }
+            });
+        }
+
+        function setTheme(newTheme) {
+            localStorage.setItem('theme', newTheme);
+            let effectiveTheme = newTheme;
+            if (newTheme === 'auto') {
+                effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', effectiveTheme);
+            updateThemeButtons();
+        }
+
+        (function() {
+            const theme = localStorage.getItem('theme') || 'auto';
+            let effectiveTheme = theme;
+            if (theme === 'auto') {
+                effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', effectiveTheme);
+            updateThemeButtons();
+        })();
+    </script>
+</head>
+<body>
+    <!-- Nav -->
+    <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: var(--background); border-bottom: 1px solid var(--border); color: var(--text-primary); transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);">
+      <div style="max-width: 960px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button onclick="location.href='/terms-of-use-he.html'" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background-color: transparent; color: #0070f3; cursor: pointer; transition: all 0.15s var(--ease);" onmouseover="this.style.backgroundColor='var(--surface)'" onmouseout="this.style.backgroundColor='transparent'">עברית</button>
+        </div>
+        <a href="/" style="display: flex; align-items: center; gap: 8px; color: var(--text-primary); text-decoration: none; cursor: pointer; transition: opacity 0.15s var(--ease);" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 15c-8 0-14 6-14 14 0 3 1 6 2 8-2 1-4 2-6 2-8 0-14 6-14 14 0 8 6 14 14 14 2 0 4-1 6-2 0 8 6 14 14 14 8 0 14-6 14-14 0-8-6-14-14-14-2 0-4 1-6 2 1-2 2-5 2-8 0-8-6-14-14-14z" stroke="#8B5CF6" stroke-width="2" fill="none"/>
+            <path d="M35 35c-4 0-8 3-8 8s3 8 8 8 8-3 8-8-3-8-8-8z" fill="#8B5CF6" opacity="0.3"/>
+            <path d="M65 35c-4 0-8 3-8 8s3 8 8 8 8-3 8-8-3-8-8-8z" fill="#8B5CF6" opacity="0.3"/>
+            <path d="M50 55c-3 0-6 2-6 6s2 6 6 6 6-2 6-6-2-6-6-6z" fill="#8B5CF6" opacity="0.5"/>
+          </svg>
+          <span style="font-size: 14px; font-weight: 700; color: #8B5CF6; letter-spacing: -0.02em;">Flowlytic</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <a href="/tools" style="color: var(--text-primary); text-decoration: none; font-size: 14px; cursor: pointer; transition: color 0.15s var(--ease);">Tools</a>
+          <div style="display: inline-flex; align-items: center; gap: 8px;">
+            <button onclick="setTheme('light')" aria-label="Light mode" style="background: transparent; border: none; width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s var(--ease), border 0.15s var(--ease); border-radius: 50%;" id="nav-theme-light"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);" class="theme-icon"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+            <button onclick="setTheme('dark')" aria-label="Dark mode" style="background: transparent; border: none; width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s var(--ease), border 0.15s var(--ease); border-radius: 50%;" id="nav-theme-dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);" class="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+            <button onclick="setTheme('auto')" aria-label="Auto mode" style="background: transparent; border: none; width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s var(--ease), border 0.15s var(--ease); border-radius: 50%;" id="nav-theme-auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);" class="theme-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="17" x2="22" y2="17"/><line x1="6" y1="21" x2="18" y2="21"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div style="height: 80px;"></div>
+
+    <div class="content">
+    <h1>Terms of Use</h1>
+    <p><strong>Last Updated:</strong> April 30, 2026</p>
+
+    <h2>1. Agreement to Terms</h2>
+    <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+
+    <h2>2. Use License</h2>
+    <p>Permission is granted to temporarily download one copy of the materials (information or software) on Flowlytic's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+    <ul>
+        <li>Modify or copy the materials</li>
+        <li>Use the materials for any commercial purpose or for any public display</li>
+        <li>Attempt to decompile or reverse engineer any software contained on the website</li>
+        <li>Remove any copyright or other proprietary notations from the materials</li>
+        <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+    </ul>
+
+    <h2>3. Disclaimer</h2>
+    <p>The materials on Flowlytic's website are provided on an 'as is' basis. Flowlytic makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+
+    <h2>4. Limitations</h2>
+    <p>In no event shall Flowlytic or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Flowlytic's website, even if Flowlytic or an authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+
+    <h2>5. Accuracy of Materials</h2>
+    <p>The materials appearing on Flowlytic's website could include technical, typographical, or photographic errors. Flowlytic does not warrant that any of the materials on its website are accurate, complete, or current. Flowlytic may make changes to the materials contained on its website at any time without notice.</p>
+
+    <h2>6. Links</h2>
+    <p>Flowlytic has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Flowlytic of the site. Use of any such linked website is at the user's own risk.</p>
+
+    <h2>7. Modifications</h2>
+    <p>Flowlytic may revise these terms of use for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of use.</p>
+
+    <h2>8. Governing Law</h2>
+    <p>These terms and conditions are governed by and construed in accordance with the laws of Israel, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
+
+    <h2>9. Contact Us</h2>
+    <p>If you have questions about these Terms of Use, please contact us at: <strong>flowlytic.info@gmail.com</strong></p>
+    </div>
+
+    <!-- Footer -->
+    <footer style="padding: 36px 24px; border-top: 1px solid var(--border); background-color: var(--background); transition: background 0.15s var(--ease), border-color 0.15s var(--ease); margin-top: 96px;">
+      <div style="max-width: 960px; margin: 0 auto;">
+        <div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 32px; margin-bottom: 32px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <p style="font-size: 12px; font-family: Geist, sans-serif; color: var(--text-muted); margin: 0;">© 2026 Flowlytic</p>
+            <p style="font-size: 14px; font-family: Geist, sans-serif; font-weight: 600; color: var(--text-primary); margin: 0;">Arie Fineshteín</p>
+          </div>
+          <a href="mailto:flowlytic.info@gmail.com" style="font-size: 14px; font-family: Geist, sans-serif; color: var(--text-primary); text-decoration: none; transition: color 0.15s var(--ease);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">flowlytic.info@gmail.com</a>
+        </div>
+        <div style="border-top: 1px solid var(--border); padding-top: 24px;">
+          <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+            <div style="display: flex; flex-direction: row; gap: 24px;">
+              <a href="/privacy-policy.html" style="font-size: 12px; font-family: Geist, sans-serif; color: var(--text-primary); text-decoration: none; transition: color 0.15s var(--ease);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">Privacy Policy</a>
+              <a href="/terms-of-use.html" style="font-size: 12px; font-family: Geist, sans-serif; color: var(--text-primary); text-decoration: none; transition: color 0.15s var(--ease);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">Terms of Use</a>
+            </div>
+            <div style="display: inline-flex; align-items: center; gap: 8px;">
+              <button onclick="setTheme('light')" aria-label="Light mode" style="background: transparent; border: none; width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s var(--ease), border 0.15s var(--ease); border-radius: 50%;" id="footer-theme-light"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);" class="theme-icon"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+              <button onclick="setTheme('dark')" aria-label="Dark mode" style="background: transparent; border: none; width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s var(--ease), border 0.15s var(--ease); border-radius: 50%;" id="footer-theme-dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);" class="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+              <button onclick="setTheme('auto')" aria-label="Auto mode" style="background: transparent; border: none; width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s var(--ease), border 0.15s var(--ease); border-radius: 50%;" id="footer-theme-auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);" class="theme-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="17" x2="22" y2="17"/><line x1="6" y1="21" x2="18" y2="21"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
